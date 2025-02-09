@@ -7,6 +7,7 @@ let lastStateTime = 0;
 
 basic.forever(function () {
     let state = pins.digitalReadPin(DigitalPin.P1);
+    // let state = input.soundLevel() > 100 ? 0 : 1;
     let time = input.runningTime();
 
     if (lastState != state){
@@ -14,15 +15,15 @@ basic.forever(function () {
         lastState = state;
 
         if (state == 0){
-            pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.Backward3)
-            basic.pause(1000);
+            pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.Backward4)
+            basic.pause(2000);
             pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.BrakeThenFloat)
             basic.showNumber(1)
         }
 
         if (state == 1) {
-            basic.pause(7000);
-            pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.Forward3)
+            basic.pause(5000);
+            pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.Forward4)
             basic.pause(3000);
             pfTransmitter.singleOutputMode(PfChannel.Channel4, PfOutput.Blue, PfSingleOutput.BrakeThenFloat)
             basic.showNumber(0)
